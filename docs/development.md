@@ -81,6 +81,8 @@ Releases are built by GitHub Actions ([`.github/workflows/release.yml`](../.gith
    ```
 3. The workflow runs the tests, downloads the model, builds the Windows installer and portable exe, and publishes a GitHub Release. The release notes come from the changelog section.
 
+You can also draft the release first. Create a draft on GitHub for the new tag, with the notes from `node scripts/release-notes.mjs <version>` and locally built files from `npm run build:win`. When you publish the draft, GitHub creates the tag, the workflow runs, and it replaces the draft's files with its own tested builds.
+
 Builds are not code-signed. To add signing later, set `CSC_LINK` / `CSC_KEY_PASSWORD` secrets and pass them to the build step.
 
 ## Continuous integration

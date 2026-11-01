@@ -55,7 +55,13 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create "$GITHUB_REF_NAME" \
-            --title "Outis ${GITHUB_REF_NAME#v}" \
-            --notes-file release-notes.md \
-            dist/*-setup.exe dist/*-setup.exe.blockmap dist/*-portable.exe dist/latest.yml
+          FILES="dist/*-setup.exe dist/*-setup.exe.blockmap dist/*-portable.exe dist/latest.yml"
+          if gh release view "$GITHUB_REF_NAME" > /dev/null 2>&1; then
+            # The release was drafted and published by hand: replace its files with these CI builds.
+            gh release upload "$GITHUB_REF_NAME" $FILES --clobber
+          else
+            gh release create "$GITHUB_REF_NAME" \
+              --title "Outis ${GITHUB_REF_NAME#v}" \
+              --notes-file release-notes.md \
+              $FILES
+          fi
