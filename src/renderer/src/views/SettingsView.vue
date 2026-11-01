@@ -174,8 +174,16 @@ const blockedColumns = [
     <section>
       <h3>Network guard</h3>
       <p class="muted">
-        Outis blocks every network request. If anything tries to connect, it is blocked and listed
-        here.
+        Outis never uses the internet. That isn't automatic, though: it runs on a computer that is
+        online, and the software it's built on (Chromium, plus third-party code libraries) can try
+        to connect on its own, for example to check for updates or download files. The network guard
+        stops this. Any attempt to reach the internet from Outis, or from its background worker, is
+        blocked before it leaves your computer, so your data can't be sent anywhere.
+      </p>
+      <p class="muted">
+        Blocked attempts since Outis started are listed below. This list should stay empty. An entry
+        here means something tried to connect and was stopped. Nothing was sent, but please report
+        it as an issue on the Outis GitHub project so it can be fixed.
       </p>
       <n-data-table
         v-if="app.blocked.length"
@@ -184,7 +192,7 @@ const blockedColumns = [
         size="small"
         :max-height="240"
       />
-      <p v-else class="ok">No network requests have been attempted. ✓</p>
+      <p v-else class="ok">Nothing has tried to connect since Outis started. ✓</p>
     </section>
 
     <section>

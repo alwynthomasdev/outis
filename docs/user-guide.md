@@ -80,7 +80,7 @@ See [library.md](library.md). Changes take effect when you press **Save changes*
 - **CSV files have a header row**.
 - **Free text defaults**: the same options as on the Text screen.
 - **ML model**: status, and a button to load it now.
-- **Network guard**: lists any blocked network attempts. This should always be empty.
+- **Network guard**: Outis runs on a computer that is online, and the software it's built on (Chromium and third-party libraries) can try to connect by itself, for example to check for updates or download files. The guard blocks every such attempt, from the window and from the background worker, before anything leaves your computer. This section lists any attempts blocked since Outis started. It should always be empty. If something appears, nothing was sent, but please report it as an issue. See [architecture.md](architecture.md#how-outis-stays-offline) for how the guard works.
 
 ## Tips
 
