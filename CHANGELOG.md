@@ -4,12 +4,7 @@ All notable changes to Outis are recorded here. The format follows [Keep a Chang
 
 ## [Unreleased]
 
-### Changed
-
-- New app icon, matching the half-circle logo in the sidebar (now drawn as SVG so both stay identical).
-- Settings → Network guard now explains what the guard does, why it's needed on an online computer, and what to do if an entry appears.
-
-## [0.1.0] - 2026-11-01
+## [1.0.0] - 2026-11-01
 
 First release.
 
@@ -25,10 +20,11 @@ First release.
 - Safe fake ranges: Ofcom drama phone numbers, reserved email domains, `QQ` NI numbers, `999` NHS numbers, documentation IP ranges.
 - Editable PII library (names, towns, streets, domains, phone formats, organisations), allow and deny lists, custom regex detectors, and import/export.
 - Compare views: inline, side by side, original or anonymised for tables; line-by-line diff and change list for JSON; inline diff for text.
-- Offline guard: DNS block, request filter, CSP, window lock-down and worker network block, with a log in Settings.
+- Offline guard: DNS block, request filter, CSP, window lock-down and worker network block, with a log and explanation in Settings.
 - Optional export of the original→fake mapping, with a warning.
 - Windows installer and portable build; GitHub Actions CI and tag-triggered releases.
 - VS Code F5 debugging for main process, window and worker.
+- App icon.
 
-[Unreleased]: https://github.com/alwynthomasdev/outis/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/alwynthomasdev/outis/releases/tag/v0.1.0
+[Unreleased]: https://github.com/alwynthomasdev/outis/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/alwynthomasdev/outis/releases/tag/v1.0.0
