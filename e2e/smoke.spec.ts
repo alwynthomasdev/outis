@@ -6,7 +6,7 @@ import {
   type ElectronApplication,
   type Page
 } from '@playwright/test'
-import { mkdtempSync } from 'node:fs'
+import { existsSync, mkdtempSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
 
@@ -17,10 +17,13 @@ let page: Page
 test.beforeAll(async () => {
   // Fresh profile so the test never touches the user's library or settings.
   const userData = mkdtempSync(join(tmpdir(), 'outis-e2e-'))
-  app = await electron.launch({
-    args: [join(root, 'out/main/index.js'), `--user-data-dir=${userData}`],
-    cwd: root
-  })
+  // OUTIS_EXE tests a packaged build (e.g. dist/win-unpacked/outis.exe) instead of out/.
+  const exe = process.env.OUTIS_EXE
+  app = await electron.launch(
+    exe
+      ? { executablePath: exe, args: [`--user-data-dir=${userData}`] }
+      : { args: [join(root, 'out/main/index.js'), `--user-data-dir=${userData}`], cwd: root }
+  )
   page = await app.firstWindow()
   await page.waitForSelector('text=Anonymise a file')
 })
@@ -80,6 +83,12 @@ test('finds PII in free text', async () => {
   })
   await expect(page.locator('mark', { hasText: 'AB 12 34 56 C' }).first()).toBeVisible()
   await expect(page.locator('mark', { hasText: 'Sarah Jenkins' }).first()).toBeVisible()
+  // With the model present (always in CI and packaged builds) the ML layer must work too:
+  // "Barclays" is only found by the NER model, not by rules.
+  if (process.env.OUTIS_EXE || existsSync(join(root, 'resources/models/Xenova/bert-base-NER'))) {
+    await expect(page.locator('text=ML: ready')).toBeVisible({ timeout: 60_000 })
+    await expect(page.locator('mark', { hasText: 'Barclays' }).first()).toBeVisible()
+  }
   await page.screenshot({ path: 'test-results/text-review.png' })
 })
 

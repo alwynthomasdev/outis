@@ -43,7 +43,13 @@ npm run typecheck
 ```
 
 - **Debug tests (current file)** and **Debug all tests** are in the Run and Debug panel.
-- The e2e test uses a temporary profile, mocks the file dialog, opens `samples/customers.csv` and `samples/orders.json`, runs the text sample, and checks that no network requests were made. Screenshots go to `test-results/`.
+- The e2e test uses a temporary profile, mocks the file dialog, opens `samples/customers.csv` and `samples/orders.json`, runs the text sample, and checks that no network requests were made. When the model is present, it also checks that the ML layer works. Screenshots go to `test-results/`.
+- To test a packaged build instead, set `OUTIS_EXE`:
+  ```bash
+  npx electron-builder --win --dir
+  OUTIS_EXE=dist/win-unpacked/outis.exe npx playwright test
+  ```
+  The release workflow does this before publishing.
 
 Sample files for manual testing are in [`samples/`](../samples).
 

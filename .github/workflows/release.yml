@@ -42,6 +42,10 @@ jobs:
       - name: Package
         run: npx electron-builder --win --publish never
 
+      - name: Test the packaged app (incl. ML model and offline check)
+        shell: bash
+        run: OUTIS_EXE="$GITHUB_WORKSPACE/dist/win-unpacked/outis.exe" npx playwright test
+
       - name: Release notes from CHANGELOG.md
         shell: bash
         run: node scripts/release-notes.mjs "${GITHUB_REF_NAME#v}" > release-notes.md

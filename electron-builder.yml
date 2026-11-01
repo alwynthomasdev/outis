@@ -4,24 +4,17 @@ copyright: Copyright © 2026 Alwyn Thomas
 directories:
   buildResources: build
   output: dist
+# Only what the app needs at runtime (production node_modules are added automatically).
 files:
-  - '!**/.vscode/*'
-  - '!**/.github/*'
-  - '!src/*'
-  - '!e2e/*'
-  - '!docs/*'
-  - '!samples/*'
-  - '!scripts/*'
-  - '!test-results/*'
-  - '!resources/models/**'
-  - '!electron.vite.config.{js,ts,mjs,cjs}'
-  - '!{vitest.config.ts,playwright.config.ts,CLAUDE.md}'
-  - '!{.eslintcache,eslint.config.mjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md,CONTRIBUTING.md,SECURITY.md}'
-  - '!{.env,.env.*,.npmrc,pnpm-lock.yaml}'
-  - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
-  - '!**/*.map'
+  - out/**/*
+  - '!out/**/*.map'
+  - package.json
+  - resources/icon.png
   # transformers.js bundles the parts of onnxruntime-web it needs; the Node build uses onnxruntime-node.
   - '!node_modules/onnxruntime-web/**'
+  # Keep only the ONNX Runtime binaries for the platform and CPU being built.
+  - '!node_modules/onnxruntime-node/bin/napi-v*/!(${platform})/**'
+  - '!node_modules/onnxruntime-node/bin/napi-v*/${platform}/!(${arch})/**'
 # The NER model ships next to the app, outside the asar archive.
 extraResources:
   - from: resources/models
@@ -29,7 +22,7 @@ extraResources:
     filter:
       - '**/*'
 asarUnpack:
-  - resources/**
+  - resources/*.png
   - node_modules/onnxruntime-node/**
   - node_modules/sharp/**
   - node_modules/@img/**
@@ -40,9 +33,6 @@ win:
       arch: [x64]
     - target: portable
       arch: [x64]
-  files:
-    - '!node_modules/onnxruntime-node/bin/napi-v*/{linux,darwin}/**'
-    - '!node_modules/onnxruntime-node/bin/napi-v*/win32/arm64/**'
 nsis:
   artifactName: ${productName}-${version}-setup.${ext}
   oneClick: false
@@ -55,8 +45,6 @@ portable:
   artifactName: ${productName}-${version}-portable.${ext}
 mac:
   target: [dmg]
-  files:
-    - '!node_modules/onnxruntime-node/bin/napi-v*/{linux,win32}/**'
   notarize: false
 dmg:
   artifactName: ${productName}-${version}.${ext}
@@ -64,8 +52,6 @@ linux:
   target: [AppImage, deb]
   maintainer: Alwyn Thomas
   category: Utility
-  files:
-    - '!node_modules/onnxruntime-node/bin/napi-v*/{darwin,win32}/**'
 appImage:
   artifactName: ${productName}-${version}.${ext}
 npmRebuild: false
