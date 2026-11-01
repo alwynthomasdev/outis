@@ -1,0 +1,10 @@
+node_modules
+dist
+out
+.DS_Store
+.eslintcache
+*.log*
+test-results
+playwright-report
+# Downloaded by `npm run fetch-model` (also done in the release pipeline)
+resources/models

@@ -1,0 +1,31 @@
+{
+  "exported": "2026-10-30T09:12:00Z",
+  "orders": [
+    {
+      "id": "ORD-100231",
+      "customer": {
+        "name": "Sarah Jenkins",
+        "email": "sarah.jenkins@gmail.com",
+        "phone": "07123 456789",
+        "address": { "line1": "14 Oak Avenue", "city": "Leeds", "postcode": "LS6 2AB" }
+      },
+      "payment": { "card": "4111 1111 1111 1111", "iban": "GB82 WEST 1234 5698 7654 32" },
+      "ip": "81.2.69.160",
+      "items": [{ "sku": "BK-221", "qty": 2 }],
+      "note": "Leave with neighbour Tom O'Neill at number 16."
+    },
+    {
+      "id": "ORD-100232",
+      "customer": {
+        "name": "Mohammed Khan",
+        "email": "m.khan@outlook.com",
+        "phone": "+44 161 234 5678",
+        "address": { "line1": "3 Station Road", "city": "Manchester", "postcode": "M4 6FG" }
+      },
+      "payment": { "card": "5555 5555 5555 4444", "iban": "GB33 BUKB 2020 1555 5555 55" },
+      "ip": "2a00:23c5:1234::1",
+      "items": [{ "sku": "MG-009", "qty": 1 }],
+      "note": ""
+    }
+  ]
+}

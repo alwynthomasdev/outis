@@ -1,0 +1,7 @@
+customer_id,first_name,last_name,email,phone,address,postcode,date_of_birth,ni_number,notes
+1001,Sarah,Jenkins,sarah.jenkins@gmail.com,07123 456789,"14 Oak Avenue, Leeds",LS6 2AB,12/03/1985,AB123456C,Called about her order. Husband Tom O'Neill will collect.
+1002,Mohammed,Khan,m.khan@outlook.com,0161 234 5678,"3 Station Road, Manchester",M4 6FG,1990-07-21,CE654321A,Prefers email. Works at Barclays.
+1003,Olivia,Bennett,olivia_b@yahoo.co.uk,+44 7911 123456,"221 High Street, Bristol",BS1 4DJ,05/11/1978,JK112233B,Card ending 1111 declined - asked to call 0117 496 0123.
+1004,James,O'Brien,jobrien@btinternet.com,020 7946 0018,"9 Church Lane, York",YO1 7HH,30/01/2001,LM998877D,
+1005,Priya,Patel,priya.patel@gmail.com,07700 900456,"77 Victoria Road, Leicester",LE2 1AA,18/09/1966,NP456789C,Daughter Amelia Patel is also a customer (amelia.patel@gmail.com).
+1006,Sarah,Hughes,sarah.hughes@hotmail.co.uk,07987 654321,"5 Mill Lane, Cardiff",CF10 1AB,22/02/1993,PR135792A,Spoke to Mrs Hughes on 02/10/2026.

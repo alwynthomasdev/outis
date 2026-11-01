@@ -1,0 +1,73 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Main process",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron-vite",
+      "windows": {
+        "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron-vite.cmd"
+      },
+      "runtimeArgs": ["--sourcemap"],
+      "env": {
+        "REMOTE_DEBUGGING_PORT": "9222",
+        // VS Code sets this for its own processes; it would make Electron run as plain Node.
+        "ELECTRON_RUN_AS_NODE": null
+      },
+      "outFiles": ["${workspaceFolder}/out/**/*.js"],
+      "presentation": { "hidden": true }
+    },
+    {
+      "name": "Renderer (window)",
+      "type": "chrome",
+      "request": "attach",
+      "port": 9222,
+      "webRoot": "${workspaceFolder}/src/renderer",
+      "timeout": 60000,
+      "presentation": { "hidden": true }
+    },
+    {
+      "name": "Background worker",
+      "type": "node",
+      "request": "attach",
+      "port": 9230,
+      "restart": true,
+      "timeout": 60000,
+      "continueOnAttach": true,
+      "outFiles": ["${workspaceFolder}/out/**/*.js"],
+      "presentation": { "hidden": true }
+    },
+    {
+      "name": "Debug tests (current file)",
+      "type": "node",
+      "request": "launch",
+      "autoAttachChildProcesses": true,
+      "program": "${workspaceFolder}/node_modules/vitest/vitest.mjs",
+      "args": ["run", "${relativeFile}"],
+      "smartStep": true,
+      "console": "integratedTerminal",
+      "presentation": { "group": "tests", "order": 1 }
+    },
+    {
+      "name": "Debug all tests",
+      "type": "node",
+      "request": "launch",
+      "autoAttachChildProcesses": true,
+      "program": "${workspaceFolder}/node_modules/vitest/vitest.mjs",
+      "args": ["run"],
+      "smartStep": true,
+      "console": "integratedTerminal",
+      "presentation": { "group": "tests", "order": 2 }
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Run Outis (debug)",
+      "configurations": ["Main process", "Renderer (window)", "Background worker"],
+      "stopAll": true,
+      "presentation": { "group": "app", "order": 1 }
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+appId: uk.co.outis.app
+productName: Outis
+copyright: Copyright © 2026 Alwyn Thomas
+directories:
+  buildResources: build
+  output: dist
+files:
+  - '!**/.vscode/*'
+  - '!**/.github/*'
+  - '!src/*'
+  - '!e2e/*'
+  - '!docs/*'
+  - '!samples/*'
+  - '!scripts/*'
+  - '!test-results/*'
+  - '!resources/models/**'
+  - '!electron.vite.config.{js,ts,mjs,cjs}'
+  - '!{vitest.config.ts,playwright.config.ts,CLAUDE.md}'
+  - '!{.eslintcache,eslint.config.mjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md,CONTRIBUTING.md,SECURITY.md}'
+  - '!{.env,.env.*,.npmrc,pnpm-lock.yaml}'
+  - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
+  - '!**/*.map'
+  # transformers.js bundles the parts of onnxruntime-web it needs; the Node build uses onnxruntime-node.
+  - '!node_modules/onnxruntime-web/**'
+# The NER model ships next to the app, outside the asar archive.
+extraResources:
+  - from: resources/models
+    to: models
+    filter:
+      - '**/*'
+asarUnpack:
+  - resources/**
+  - node_modules/onnxruntime-node/**
+  - node_modules/sharp/**
+  - node_modules/@img/**
+win:
+  executableName: outis
+  target:
+    - target: nsis
+      arch: [x64]
+    - target: portable
+      arch: [x64]
+  files:
+    - '!node_modules/onnxruntime-node/bin/napi-v*/{linux,darwin}/**'
+    - '!node_modules/onnxruntime-node/bin/napi-v*/win32/arm64/**'
+nsis:
+  artifactName: ${productName}-${version}-setup.${ext}
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  shortcutName: ${productName}
+  uninstallDisplayName: ${productName}
+  createDesktopShortcut: always
+portable:
+  artifactName: ${productName}-${version}-portable.${ext}
+mac:
+  target: [dmg]
+  files:
+    - '!node_modules/onnxruntime-node/bin/napi-v*/{linux,win32}/**'
+  notarize: false
+dmg:
+  artifactName: ${productName}-${version}.${ext}
+linux:
+  target: [AppImage, deb]
+  maintainer: Alwyn Thomas
+  category: Utility
+  files:
+    - '!node_modules/onnxruntime-node/bin/napi-v*/{darwin,win32}/**'
+appImage:
+  artifactName: ${productName}-${version}.${ext}
+npmRebuild: false
+publish:
+  provider: github
+  owner: alwynthomasdev
+  repo: outis
+  releaseType: release

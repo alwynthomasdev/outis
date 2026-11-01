@@ -1,0 +1,66 @@
+{
+  "name": "outis",
+  "productName": "Outis",
+  "version": "0.1.0",
+  "description": "Offline desktop tool for anonymising personal data (PII) in CSV, JSON and free text.",
+  "main": "./out/main/index.js",
+  "author": {
+    "name": "Alwyn Thomas"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/alwynthomasdev/outis",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alwynthomasdev/outis.git"
+  },
+  "scripts": {
+    "dev": "electron-vite dev",
+    "start": "electron-vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "electron-vite build && playwright test",
+    "fetch-model": "node scripts/fetch-model.mjs",
+    "format": "prettier --write .",
+    "lint": "eslint --cache .",
+    "typecheck:node": "tsc --noEmit -p tsconfig.node.json --composite false",
+    "typecheck:web": "vue-tsc --noEmit -p tsconfig.web.json --composite false",
+    "typecheck": "npm run typecheck:node && npm run typecheck:web",
+    "build": "npm run typecheck && electron-vite build",
+    "postinstall": "install-electron && electron-builder install-app-deps",
+    "build:unpack": "npm run build && electron-builder --dir",
+    "build:win": "npm run build && electron-builder --win",
+    "build:linux": "npm run build && electron-builder --linux",
+    "build:mac": "npm run build && electron-builder --mac"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "^4.3.2"
+  },
+  "devDependencies": {
+    "@electron-toolkit/eslint-config-prettier": "3.0.1",
+    "@electron-toolkit/eslint-config-ts": "^4.0.0",
+    "@electron-toolkit/tsconfig": "^2.0.0",
+    "@faker-js/faker": "^10.6.0",
+    "@noble/hashes": "^2.4.0",
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^24.19.2",
+    "@types/papaparse": "^5.5.2",
+    "@vitejs/plugin-vue": "^6.0.10",
+    "diff": "^9.0.0",
+    "electron": "^44.7.2",
+    "electron-builder": "^26.15.3",
+    "electron-vite": "^6.0.0",
+    "eslint": "^10.12.0",
+    "eslint-plugin-vue": "^10.11.1",
+    "naive-ui": "^2.45.3",
+    "papaparse": "^5.7.0",
+    "pinia": "^4.1.0",
+    "prettier": "^3.9.10",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.4",
+    "vitest": "^5.0.5",
+    "vue": "^3.5.44",
+    "vue-eslint-parser": "^10.4.1",
+    "vue-router": "^5.4.0",
+    "vue-tsc": "^3.3.13"
+  }
+}
