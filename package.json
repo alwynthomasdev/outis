@@ -30,7 +30,8 @@
     "build:unpack": "npm run build && electron-builder --dir",
     "build:win": "npm run build && electron-builder --win",
     "build:linux": "npm run build && electron-builder --linux",
-    "build:mac": "npm run build && electron-builder --mac"
+    "build:mac": "npm run build && electron-builder --mac",
+    "icons": "node scripts/make-icons.mjs"
   },
   "dependencies": {
     "@huggingface/transformers": "^4.3.2"

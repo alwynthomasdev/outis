@@ -67,6 +67,8 @@ npm run build:mac     # .dmg (unsigned)
 
 Run `npm run fetch-model` first so the model is included.
 
+The app icon is drawn in `build/icon.svg`. After editing it, run `npm run icons` to regenerate `build/icon.png`, `icon.ico`, `icon.icns` and `resources/icon.png`.
+
 ## Releasing
 
 Releases are built by GitHub Actions ([`.github/workflows/release.yml`](../.github/workflows/release.yml)) when a version tag is pushed.

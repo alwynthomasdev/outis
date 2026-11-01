@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <defs>
+    <clipPath id="eye">
+      <path d="M150 512 C 290 270, 734 270, 874 512 C 734 754, 290 754, 150 512 Z"/>
+    </clipPath>
+  </defs>
+  <rect x="32" y="32" width="960" height="960" rx="216" fill="#1F3B57"/>
+  <path d="M150 512 C 290 270, 734 270, 874 512 C 734 754, 290 754, 150 512 Z" fill="#F3E9D2"/>
+  <circle cx="512" cy="512" r="175" fill="#D2693C" clip-path="url(#eye)"/>
+  <rect x="112" y="466" width="800" height="92" rx="20" fill="#132639"/>
+</svg>
