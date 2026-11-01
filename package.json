@@ -1,7 +1,7 @@
 {
   "name": "outis",
   "productName": "Outis",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Offline desktop tool for anonymising personal data (PII) in CSV, JSON and free text.",
   "main": "./out/main/index.js",
   "author": {
