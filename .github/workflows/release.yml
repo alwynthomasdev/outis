@@ -29,7 +29,7 @@ jobs:
       - run: npm ci
 
       - name: Cache NER model
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: resources/models
           key: ner-model-${{ hashFiles('scripts/fetch-model.mjs') }}
