@@ -61,7 +61,18 @@ onMounted(() => app.init())
         <div class="shell">
           <aside class="sidebar">
             <div class="brand">
-              <span class="logo">◐</span>
+              <!-- Same shape as the app icon (build/icon.svg). -->
+              <svg class="logo" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="9.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path d="M12 2.5 A 9.5 9.5 0 0 0 12 21.5 Z" fill="currentColor" />
+              </svg>
               <span>Outis</span>
             </div>
             <nav>
@@ -141,7 +152,7 @@ onMounted(() => app.init())
 }
 .logo {
   color: var(--accent);
-  font-size: 22px;
+  flex: none;
 }
 nav {
   display: flex;

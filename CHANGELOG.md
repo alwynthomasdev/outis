@@ -6,7 +6,7 @@ All notable changes to Outis are recorded here. The format follows [Keep a Chang
 
 ### Changed
 
-- New app icon.
+- New app icon, matching the half-circle logo in the sidebar (now drawn as SVG so both stay identical).
 - Settings → Network guard now explains what the guard does, why it's needed on an online computer, and what to do if an entry appears.
 
 ## [0.1.0] - 2026-11-01
